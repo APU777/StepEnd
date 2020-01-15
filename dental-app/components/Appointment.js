@@ -34,7 +34,7 @@ const GroupDate = styled.Text`
   width: 70px;
   height: 32px;
   text-align: center;
-  line-height: 28px;
+  line-height: 30px;
 `;
 
 const GrayText = styled.Text`

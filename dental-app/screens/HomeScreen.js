@@ -110,36 +110,30 @@ const DATA = [
     },
   ];
 
-class HomeScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Patiens',
-    headerTintColor: '#2A86FF',
-    headerStyle:{
-      elevation: 0.8,
-      shadowOpacity: 0.8
-    }
-  };
-
-  render() {
-    const {
-      navigation
-    } = this.props;
-    return <Container>
+ const HomeScreen = ({ navigation }) => (
+          <Container>
               <SectionList
               sections={DATA}
               keyExtractor={(item, index) => index}
-              renderItem={({ item }) => <Appointment {...item}/> }
+              renderItem={({ item }) => <Appointment navigate={ navigation.navigate } {...item}/> }
               renderSectionHeader={({section: { title } }) => (
                   <SectionTitle>{title}</SectionTitle>
               )}
               />
               <PlusButton>
-              <Ionicons name="ios-add" size={36} color="white"/>
+                <Ionicons name="ios-add" size={36} color="white"/>
               </PlusButton>
           </Container>
-  }
-}
+ );
 
+HomeScreen.navigationOptions = {
+  title: 'Patiens',
+  headerTintColor: '#2A86FF',
+  headerStyle:{
+    elevation: 0.8,
+    shadowOpacity: 0.8
+  }
+};
 
 const PlusButton = styled.TouchableOpacity`
   align-items: center;

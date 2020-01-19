@@ -15,6 +15,7 @@ const DATA = [
          diagnosis: 'something',
          active: true,
          user:{
+           phone: '+1 (234) 567-89-10',
            fullname: 'Donald Trump',
            avatar:
              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWaucKX5nhhE8F1QdrJzapbiV1nfEwj3YVvLXi9OPJ1VDlk5VN&s'
@@ -24,6 +25,7 @@ const DATA = [
          time: '16:30',
          diagnosis: 'something',
          user:{
+           phone: '+1 (234) 567-87-10',
            fullname: 'Angela Merkel',
            avatar:
              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqtdWV278_mW3vo5CUS5OHwCot7Ui3dMOBFRtDrYPkPm4LoI0-nA&s'
@@ -38,6 +40,7 @@ const DATA = [
          time: '15:30',
          diagnosis: 'something',
          user:{
+           phone: '+1 (234) 567-89-10',
            fullname: 'Donald Trump',
            avatar:
              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWaucKX5nhhE8F1QdrJzapbiV1nfEwj3YVvLXi9OPJ1VDlk5VN&s'
@@ -115,7 +118,7 @@ const DATA = [
               <SectionList
               sections={DATA}
               keyExtractor={(item, index) => index}
-              renderItem={({ item }) => <Appointment navigate={ navigation.navigate } {...item}/> }
+              renderItem={({ item }) => <Appointment navigate={ navigation.navigate } item={ item }/> }
               renderSectionHeader={({section: { title } }) => (
                   <SectionTitle>{title}</SectionTitle>
               )}

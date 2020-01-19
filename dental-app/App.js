@@ -13,9 +13,10 @@ const AppNavigator = createStackNavigator(
     }
   },
   {
-   InitialRouteName: 'Patient'
+   InitialRouteName: 'Home'
   }
 );
 
 export default createAppContainer(AppNavigator);
 
+ 1 46

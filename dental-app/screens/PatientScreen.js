@@ -1,14 +1,20 @@
 import React from 'react';
-import{ Text } from 'react-native';
+import{ Text, View } from 'react-native';
 import styled from 'styled-components/native';
 import { Foundation } from '@expo/vector-icons';
 import {GrayText, Button } from "../components";
 
 
-const PatientScreen = () =>( 
-    <Container>
-        <PatientFullname>Almaz Almazov</PatientFullname>
-        <GrayText>+1 (111) 111-11-11</GrayText>
+const PatientScreen = ({ navigation }) =>( 
+<View style={{ flex: 1 }}>
+    <PatientDetails> 
+        <PatientFullname>
+            { navigation.getParam('user').fullname }
+        </PatientFullname>
+        <GrayText>
+          { navigation.getParam('user').phone }
+        </GrayText>
+
         <PatientButtons>
             <FormulaButtonView>
                 <Button>Formula of teeth</Button>
@@ -19,8 +25,27 @@ const PatientScreen = () =>(
                 </Button>
             </PhoneButtonView>
         </PatientButtons>
-    </Container>
+    </PatientDetails>
+
+    <PatientAppointments>
+
+    </PatientAppointments>
+</View>
 );
+
+const Container = styled.View`
+    padding: 25px;
+    flex: 1;
+`;
+
+const PatientDetails = styled(Container)`
+    flex: 0.3;
+`;
+
+const PatientAppointments = styled.View`
+    flex: 1;
+    background: #F8FAFD;
+`;
 
 const FormulaButtonView = styled.View`
     flex: 1;
@@ -42,10 +67,6 @@ const PatientFullname = styled.Text`
     font-size: 24px;
     line-height: 30px;
     margin-bottom: 3px;
-`;
-
-const Container = styled.View`
-    padding: 25px;
 `;
 
 PatientScreen.navigationOptions = {

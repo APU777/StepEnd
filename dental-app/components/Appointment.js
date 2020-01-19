@@ -1,14 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import styled from 'styled-components/native';
-import { GrayText } from "../components";
+import GrayText from './GrayText';
 
-const Group = ({ user, diagnosis, active, time, navigate }) => {
+const Appointment = ({ navigate, item }) => {
+  const { user, diagnosis, active, time } = item; 
   return(
-       <GroupItem onPress={navigate.bind(this, 'Patient')}>
+       <GroupItem onPress={navigate.bind(this, 'Patient', item)}>
                 <Avatar 
                     source={{
-                    uri:user.avatar
+                    uri: user.avatar
                 }}
                 />
                 <View style={{ flex: 1 }}>
@@ -20,7 +21,7 @@ const Group = ({ user, diagnosis, active, time, navigate }) => {
   );
 };
 
-Group.defaultProps = {
+Appointment.defaultProps = {
     groupTitle: 'Untitled',
     items: []
 };
@@ -57,8 +58,4 @@ const GroupItem = styled.TouchableOpacity`
   border-bottom-color: #f3f3f3
 `;
 
-
-
-
-
-export default Group;
+export default Appointment;

@@ -1,7 +1,7 @@
 import React from 'react';
 import{ Text, View } from 'react-native';
 import styled from 'styled-components/native';
-import { Foundation } from '@expo/vector-icons';
+import { Foundation, Ionicons } from '@expo/vector-icons';
 import {GrayText, Button } from "../components";
 
 
@@ -9,10 +9,10 @@ const PatientScreen = ({ navigation }) =>(
 <View style={{ flex: 1 }}>
     <PatientDetails> 
         <PatientFullname>
-            { navigation.getParam('user').fullname }
+            { navigation.getParam('user', {}).fullname }
         </PatientFullname>
         <GrayText>
-          { navigation.getParam('user').phone }
+          { navigation.getParam('user', {}).phone }
         </GrayText>
 
         <PatientButtons>
@@ -25,13 +25,51 @@ const PatientScreen = ({ navigation }) =>(
                 </Button>
             </PhoneButtonView>
         </PatientButtons>
+
     </PatientDetails>
 
     <PatientAppointments>
-
+        <Container>
+            <AppointmentCard>
+                <AppointmentCardRow>
+                    <Ionicons name="md-medical" size={16} color="#A3A3A3"/>
+                    <AppointmentCardLabel>
+                        Tooth: <Text style={{ fontWeight: 'bold' }}>12</Text>
+                    </AppointmentCardLabel>
+                </AppointmentCardRow>
+                <AppointmentCardRow>
+                    <Foundation name="clipboard-notes" size={16} color="#A3A3A3"/>
+                    <AppointmentCardLabel>
+                        Diagnosis: <Text style={{ fontWeight: 'bold' }}>rich</Text>
+                    </AppointmentCardLabel>
+                </AppointmentCardRow>
+            </AppointmentCard>
+        </Container>
     </PatientAppointments>
 </View>
 );
+
+const AppointmentCardLabel = styled.Text`
+    font-size: 16px;
+    margin-left: 10px; 
+`;
+
+const AppointmentCardRow = styled.View`
+    flex-direction: row;
+    align-items: center;
+    margin-top: 3.5px;
+    margin-bottom: 3.5px;
+`;
+
+const AppointmentCard = styled.View`
+    shadow-color: gray;
+    shadow-opacity: 0.4;
+    shadow-radius: 10;
+    elevation: 0.5;
+    padding: 20px 25px;
+    border-radius: 10px;
+    background: white;
+`;
 
 const Container = styled.View`
     padding: 25px;

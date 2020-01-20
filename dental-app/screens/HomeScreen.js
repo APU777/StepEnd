@@ -149,7 +149,7 @@ const PlusButton = styled.TouchableOpacity`
   right: 25px;
   bottom: 25px;
   shadow-color: #2A86FF;
-  shadow-opacity: 0.7;
+  shadow-opacity: 0.4;
   shadow-radius: 3.5;
   elevation: 4;
 `;

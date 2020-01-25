@@ -2,7 +2,7 @@ import React from 'react';
 import{ Text, View } from 'react-native';
 import styled from 'styled-components/native';
 import { Foundation, Ionicons } from '@expo/vector-icons';
-import {GrayText, Button } from "../components";
+import { GrayText, Button, Badge } from "../components";
 
 
 const PatientScreen = ({ navigation }) =>( 
@@ -42,6 +42,12 @@ const PatientScreen = ({ navigation }) =>(
                     <AppointmentCardLabel>
                         Diagnosis: <Text style={{ fontWeight: 'bold' }}>rich</Text>
                     </AppointmentCardLabel>
+                </AppointmentCardRow>
+                <AppointmentCardRow style={{ marginTop: 15, justifyContent: 'space-between' }}>
+                    <Badge style={{ width: 155 }} active>
+                        11.10.2019 - 15:40
+                    </Badge>
+                    <Badge color="green">1500 $</Badge>
                 </AppointmentCardRow>
             </AppointmentCard>
         </Container>

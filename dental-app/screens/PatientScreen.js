@@ -31,6 +31,9 @@ const PatientScreen = ({ navigation }) =>(
     <PatientAppointments>
         <Container>
             <AppointmentCard>
+                <MoreButton>
+                    <Ionicons name="md-more" size={24} color="rgba(0, 0, 0, 0.4)"/>
+                </MoreButton>
                 <AppointmentCardRow>
                     <Ionicons name="md-medical" size={16} color="#A3A3A3"/>
                     <AppointmentCardLabel>
@@ -54,6 +57,17 @@ const PatientScreen = ({ navigation }) =>(
     </PatientAppointments>
 </View>
 );
+
+const MoreButton = styled.TouchableOpacity`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    height: 32px;
+    width: 32px;
+`;
 
 const AppointmentCardLabel = styled.Text`
     font-size: 16px;

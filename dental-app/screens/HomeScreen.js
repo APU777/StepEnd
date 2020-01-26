@@ -1,133 +1,44 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Text, View, SectionList } from 'react-native';
 import styled from 'styled-components/native';
 import Appointment from '../components/Appointment';
 import SectionTitle from '../components/SectionTitle';
+import axios from "axios";
 
 
-const DATA = [
-    {
-      title: '14 september',
-      data: [
-        {
-         time: '15:30',
-         diagnosis: 'something',
-         active: true,
-         user:{
-           phone: '+1 (234) 567-89-10',
-           fullname: 'Donald Trump',
-           avatar:
-             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWaucKX5nhhE8F1QdrJzapbiV1nfEwj3YVvLXi9OPJ1VDlk5VN&s'
-         }
-        },
-        {
-         time: '16:30',
-         diagnosis: 'something',
-         user:{
-           phone: '+1 (234) 567-87-10',
-           fullname: 'Angela Merkel',
-           avatar:
-             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqtdWV278_mW3vo5CUS5OHwCot7Ui3dMOBFRtDrYPkPm4LoI0-nA&s'
-         }
-        }
-      ]
-    },
-    {
-      title: '16 september',
-      data:[
-        {
-         time: '15:30',
-         diagnosis: 'something',
-         user:{
-           phone: '+1 (234) 567-89-10',
-           fullname: 'Donald Trump',
-           avatar:
-             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWaucKX5nhhE8F1QdrJzapbiV1nfEwj3YVvLXi9OPJ1VDlk5VN&s'
-         }
-        },
-        {
-         time: '16:30',
-         diagnosis: 'something',
-         user:{
-           fullname: 'Angelaa Merkel',
-           avatar:
-             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqtdWV278_mW3vo5CUS5OHwCot7Ui3dMOBFRtDrYPkPm4LoI0-nA&s'
-         }
-        },
-        {
-          time: '15:30',
-          diagnosis: 'something',
-          user:{
-            fullname: 'Donald Trump',
-            avatar:
-              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWaucKX5nhhE8F1QdrJzapbiV1nfEwj3YVvLXi9OPJ1VDlk5VN&s'
-          }
-         },
-         {
-          time: '16:30',
-          diagnosis: 'something',
-          user:{
-            fullname: 'Angelaa Merkel',
-            avatar:
-              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqtdWV278_mW3vo5CUS5OHwCot7Ui3dMOBFRtDrYPkPm4LoI0-nA&s'
-          }
-         },
-         {
-          time: '15:30',
-          diagnosis: 'something',
-          user:{
-            fullname: 'Donald Trump',
-            avatar:
-              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWaucKX5nhhE8F1QdrJzapbiV1nfEwj3YVvLXi9OPJ1VDlk5VN&s'
-          }
-         },
-         {
-          time: '16:30',
-          diagnosis: 'something',
-          user:{
-            fullname: 'Angelaa Merkel',
-            avatar:
-              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqtdWV278_mW3vo5CUS5OHwCot7Ui3dMOBFRtDrYPkPm4LoI0-nA&s'
-          }
-         },
-         {
-          time: '15:30',
-          diagnosis: 'something',
-          user:{
-            fullname: 'Donald Trump',
-            avatar:
-              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWaucKX5nhhE8F1QdrJzapbiV1nfEwj3YVvLXi9OPJ1VDlk5VN&s'
-          }
-         },
-         {
-          time: '16:30',
-           diagnosis: 'something',
-          user:{
-            fullname: 'Angelaa Merkel',
-            avatar:
-              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqtdWV278_mW3vo5CUS5OHwCot7Ui3dMOBFRtDrYPkPm4LoI0-nA&s'
-          }
-         }
-      ]
-    },
-  ];
 
- const HomeScreen = ({ navigation }) => (
+ const HomeScreen = ({ navigation }) => {
+      const [data, setData] = useState(null);
+
+      useEffect(() => {
+        axios.get('https://trycode.pw/c/DL80P.json').then(({ data }) => {
+          setData(data);
+        });
+      }, []);
+
+      return (
           <Container>
+            {data && (
               <SectionList
-              sections={DATA}
+              sections={data}
               keyExtractor={(item, index) => index}
-              renderItem={({ item }) => <Appointment navigate={ navigation.navigate } item={ item }/> }
+            renderItem={({ item }) => 
+              (
+                <Appointment navigate={ navigation.navigate } item={ item }/> 
+              )
+            }
               renderSectionHeader={({section: { title } }) => (
                   <SectionTitle>{title}</SectionTitle>
               )}
               />
+            )}
               <PlusButton>
                 <Ionicons name="ios-add" size={36} color="white"/>
               </PlusButton>
           </Container>
- );
+          )
+};
 
 HomeScreen.navigationOptions = {
   title: 'Patiens',
